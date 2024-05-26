@@ -1,16 +1,17 @@
 const mongoose = require('mongoose')
 
 const UserSchema = new mongoose.Schema({
-    id_: Number,
+  _id:{type:Number},
     Username: String,
     password: String,
     name: String,
     email: String,
-    phonenumber: Number,
-    loanOfficer: Boolean,
-    loanPending: Boolean,
+    phoneNumber: Number,
+    loanOfficer: String,
+    loanPending: String,
     creditScore: Number,
     checkingAccount: Number,
+    Money: Number,
   });
 
   const Bankshem = mongoose.model('bankUser',UserSchema)
