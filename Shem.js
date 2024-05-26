@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const UserSchema = new mongoose.Schema({
-    id_: Number,
+    id_: {type: Number},
     Username: String,
     password: String,
     name: String,
@@ -10,7 +10,7 @@ const UserSchema = new mongoose.Schema({
     loanOfficer: Boolean,
     loanPending: Boolean,
     creditScore: Number,
-    checkingAccount: Number,
+    checkingAccount: { type: String, required: true, unique: true }
   });
 
   const Bankshem = mongoose.model('bankUser',UserSchema)

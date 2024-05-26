@@ -8,6 +8,7 @@ require("dotenv").config();
 const { PORT = 3000, DATABASE_URL } = process.env;
 const dumbData = require("./Data")
 const bankUser = require("./Shem")
+const transaction = require("./transaction")
 // import express
 const express = require("express");
 // create application object
@@ -95,5 +96,33 @@ const UserSchema = new mongoose.Schema({
     } catch (error) {
       //send error
       res.status(400).json(error);
+    }
+  });
+
+  // MODEL TRANSACTIONS ////////////////////
+  app.get('/User/:id/transaction',async (req, res) => {
+    const found2 = await transaction.find({})
+    
+   
+   
+   })
+
+
+  app.post("/transaction", async (req, res) => {
+    try {
+      // send all people
+      res.json(await transaction.create(req.body));
+    } catch (error) {
+      //send error
+      res.status(400).json(error);
+    }
+  });
+
+  app.get('/users/:userId/transactions', async (req, res) => {
+    try {
+      const foundTransaction = await Transaction.find({ userId: req.params.userId});
+      res.status(200).json(foundTransaction);
+    } catch (err) {
+      res.status(400).json({ message: err.message });
     }
   });
